@@ -1,0 +1,55 @@
+{% extends 'Manager/home.html' %}
+
+{% block content %}
+<style>
+    /* Add your custom styles here */
+    .assign-form {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-label {
+        font-weight: bold;
+    }
+    .form-select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    .form-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .form-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<h1>Assign Case To Officers</h1>
+
+<div class="assign-form">
+    <form method="post" action="{% url 'Manager:Assign2' case.case_id %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="officer">Select Officer:</label><br>
+            <select id="officer" name="officer" class="form-select">
+                {% for officer in officers %}
+                    <option value="{{ officer.email }}">{{ officer.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="form-button">Assign Case</button>
+    </form>
+</div>
+
+{% endblock %}

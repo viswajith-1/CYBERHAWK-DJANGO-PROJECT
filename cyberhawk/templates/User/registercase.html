@@ -1,0 +1,115 @@
+{% extends 'User/home.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <br>
+    <h3>Register Cybercrime</h3>
+    <br>
+
+    <form method="post" action="">
+
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Victim Name</label>
+          <input type="text" class="form-control" id="victimname" name="victimname" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-select" aria-label="gender" id="gender" name="gender" required>
+                <option selected disabled value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+          </div>
+
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input type="number" class="form-control" id="victimage" name="victimage" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="number" class="form-control" id="victimphone" name="victimphone" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" id="victimdob" name="victimdob" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">District</label>
+            <select class="form-select" aria-label="district" id="district" name="district" required>
+            <option selected disabled value="">Select District</option>
+            <option value="Trivandrum">Trivandrum</option>
+            <option value="Kollam">Kollam</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Pathanamthitta">Pathanamthitta</option>
+            <option value="Kottayam">Kotttayam</option>
+            <option value="Ernakulam">Ernakulam</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Malapuram">Malapuram</option>
+            <option value="Kozhikode">Kozhikode</option>
+            <option value="Palakkad">Palakkad</option>
+            <option value="Wayanad">Wayanad</option>
+            <option value="Kannur">Kannur</option>
+            <option value="Idukki">Idukki</option>
+            <option value="Kasargod">Kasargod</option>
+            </select>
+            </div>
+
+            
+          <div class="mb-3">
+            <label class="form-label">Address</label>
+            <textarea class="form-control" id="victimaddress" name="victimaddress" rows="2" required></textarea>
+        </div>
+
+          <div class="mb-3">
+            <label class="form-label">Type of Crime</label>
+            <select class="form-select" aria-label="incidenttype" id="incidenttype" name="incidenttype" required>
+                <option selected disabled value="">Select type of crime</option>
+                <option value="Phishing">Phishing</option>
+                <option value="Identity Theft">Identity Theft</option>
+                <option value="Child Pornography">Child Pornography</option>
+                <option value="E-commerce Fraud">E-commerce Fraud</option>
+                <option value="Cyber Terrorism">Cyber Terrorism</option>
+                <option value="Cyber Defamation">Cyber Defamation</option>
+                <option value="Cyber Bullying">Cyber Bullying</option>
+                <option value="Pornography">Pornography</option>
+                <option value="Cyber Stalking">Cyber Stalking</option>
+                <option value="Software Piracy">Software Piracy</option>
+                <option value="Investment Frauds">Investment Frauds</option>
+                <option value="Investment Frauds">Other</option>
+              </select>
+          </div>
+
+        <div class="mb-3">
+            <label class="form-label">Crime Description</label>
+            <textarea class="form-control" id="crimedescription" name="crimedescription" rows="3" required></textarea>
+          </div>
+    
+          <div class="mb-3">
+            <label class="form-label">Incident Date</label>
+            <input type="date" class="form-control" id="incidentdate" name="incidentdate" required>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+              <label class="form-check-label" for="invalidCheck">
+                Verify & Confirm entered details here.
+              </label>
+              <div class="invalid-feedback">
+                You must agree before submitting.
+              </div>
+            </div>
+            <br>
+
+        <button type="submit" class="btn btn-dark">Submit</button>
+      </form>
+
+</div>
+
+{% endblock %}

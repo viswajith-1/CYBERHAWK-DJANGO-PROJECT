@@ -1,0 +1,66 @@
+{% extends 'Manager/home.html' %}
+
+{% block content %}
+<style>
+    /* Add your custom styles here */
+    .case-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .case-table th, .case-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    .case-table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .case-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .view-more-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+<center><br><br>
+<h1>Cases in Waiting List For Assign</h1></center>
+<br><br><br>
+<table class="case-table">
+    <tr>
+        <th>Case ID</th>
+        <th>Victim Name</th>
+        <th>Gender</th>
+        <th>Mobile No</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>Incident Type</th>
+        <th>Description</th>
+        <th>Incident Date</th>
+       
+        <th>Action</th>
+    </tr>
+    {% for case in cases %}
+    <tr>
+        <td>{{ case.case_id }}</td>
+        <td>{{ case.victim_name }}</td>
+        <td>{{ case.victim_gender }}</td>
+        <td>{{ case.mobile_no }}</td>
+        <td>{{ case.email }}</td>
+        <td>{{ case.victim_address }}</td>
+        <td>{{ case.incident_type }}</td>
+        <td>{{ case.description }}</td>
+        <td>{{ case.incident_date }}</td>
+       
+        <td><a href="{% url 'Manager:Assign1' case.case_id %}" class="view-more-link">View More</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="15">No case details available.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

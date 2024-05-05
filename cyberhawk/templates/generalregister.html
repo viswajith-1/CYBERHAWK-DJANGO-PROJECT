@@ -1,0 +1,83 @@
+{% extends 'generalbase.html' %}
+
+{% block content %}
+
+<div class="col-md-6 offset-md-3">
+    <br>
+    <h1>Register Account</h1>
+    <br>
+
+        <form method="post" action="">
+
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+    
+              <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="number" class="form-control" id="userphone" name="userphone" required>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="useremail" name="useremail" required>
+              </div>
+    
+              <div class="mb-3">
+                <label class="form-label">District</label>
+                <select class="form-select" aria-label="district" id="userdistrict" name="userdistrict" required>
+                    <option selected disabled value="">Select District</option>
+                    <option value="Trivandrum">Trivandrum</option>
+                    <option value="Kollam">Kollam</option>
+                    <option value="Alappuzha">Alappuzha</option>
+                    <option value="Pathanamthitta">Pathanamthitta</option>
+                    <option value="Kotttayam">Kotttayam</option>
+                    <option value="Ernakulam">Ernakulam</option>
+                    <option value="Thrissur">Thrissur</option>
+                    <option value="Malapuram">Malapuram</option>
+                    <option value="Kozhikode">Kozhikode</option>
+                    <option value="Palakkad">Palakkad</option>
+                    <option value="Wayanad">Wayanad</option>
+                    <option value="Kannur">Kannur</option>
+                    <option value="Idukki">Idukki</option>
+                    <option value="Kasargod">Kasargod</option>
+                  </select>
+              </div>
+    
+              <div class="mb-3">
+                <label class="form-label">Address</label>
+                <textarea class="form-control" id="useraddress" name="useraddress" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">User Type</label>
+                <select class="form-select" aria-label="usertype" id="usertype" name="usertype" required>
+                    <option selected value="4">User</option>
+                  </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" class="form-control" id="userpassword" name="userpassword" required>
+              </div>
+    
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                  <label class="form-check-label" for="invalidCheck">
+                    Verify & Confirm entered details here.
+                  </label>
+                  <div class="invalid-feedback">
+                    You must agree before submitting.
+                  </div>
+                </div>
+                <br>
+    
+            <button type="submit" class="btn btn-dark">Submit</button>
+          </form>
+    
+    </div>
+
+{% endblock %}

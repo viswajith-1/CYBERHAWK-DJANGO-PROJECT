@@ -1,0 +1,83 @@
+{% extends "Admin/home.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Threats</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0 px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #222;
+        }
+
+        p {
+            text-align: center;
+            margin-top:0px;
+            font-size: 1.2em;
+        }
+
+        #myChart {
+            width: 1300px;
+            height: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>DISTRICT BASED CYBERCRIME REPORTS</h1>
+    <canvas id="myChart"></canvas>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const labels = ['Trivandrum', 'Kollam', 'Alappuzha', 'Pathanamthitta', 'Kottayam', 'Idukki', 'Ernakulam', 'Thrissur', 'Palakkad', 'Malappuram', 'Kozhikode', 'Wayanad', 'Kannur', 'Kasargod'];
+        const data = {
+            labels: labels,
+            datasets: [{
+		label: 'no. of crimes reported',
+                backgroundColor: [
+                    'black'],  
+                data: [1, 0, 2, 0, 0,0,0,0,0,0,0,0,0,0],
+                // Reduce bar width
+                barThickness: 40.0
+            }]
+        };
+
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            fontColor: '#333',
+                            fontSize: 16
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    
+
+
+
+<br><br><br><br><br><br>
+
+
+{% endblock %}

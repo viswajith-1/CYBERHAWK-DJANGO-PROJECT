@@ -1,0 +1,110 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">Login</div>
+                <div class="card-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="userid" class="form-label">User ID</label>
+                            <input type="text" class="form-control" id="userid" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Type</label>
+                            <select class="form-select" id="type" required>
+                                <option value="">Select Type</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Staff">Staff</option>
+                                <option value="User">User</option>
+
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#loginForm').submit(function (event) {
+            event.preventDefault();
+            var userid = $('#userid').val();
+            var password = $('#password').val();
+            var type = $('#type').val();
+            
+            if (userid && password && type) {
+                $.ajax({
+                    url: "/Login",
+                    method: "POST",
+                    data: {
+                        "userid": userid,
+                        "password": password,
+                        "type": type
+                    },
+                    timeout: 30000,
+                    success: function (data) {
+                        if (data.status == 1) {
+                            alert("Admin Login successful!");
+                            window.location.href = "{% url 'Admin:home' %}";
+                        } else if (data.status == 2) {
+                            alert("Manager Login successful!");
+                            window.location.href = "{% url 'Manager:home' %}";
+                        } else if (data.status == 3) {
+                            alert("Staff Login successful!");
+                            window.location.href = "{% url 'Staff:home' %}";
+                         
+                        }
+                        else if (data.status == 4) {
+                            alert("User Login successful!");
+                            window.location.href = "{% url 'User:home' %}";
+                         
+                        } else {
+                            alert("Invalid login details");
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        console.error("AJAX request failed:", textStatus, errorThrown);
+                    }
+                });
+            } else {
+                alert("Please enter all fields.");
+            }
+        });
+    });
+</script>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endblock %}

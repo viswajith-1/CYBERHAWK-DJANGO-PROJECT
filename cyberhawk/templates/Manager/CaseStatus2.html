@@ -1,0 +1,197 @@
+{% extends 'Manager/home.html' %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    form div {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    button[type="submit"],
+    button[type="button"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover,
+    button[type="button"]:hover {
+        background-color: #45a049;
+    }
+
+    .workout-plan {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .workout-plan label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .workout-plan button {
+        background-color: #dc3545;
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .workout-plan button:hover {
+        background-color: #c82333;
+    }
+
+    .align-center {
+        text-align: center;
+    }
+       </style>
+   
+
+   <br>
+   <br>
+   <br>  
+   <form id="bookingForm">
+       <h1>Case Details</h1>
+       <div>
+        <label for="caseId">Case ID:</label>
+        <span>{{ data.case_id.case_id }}</span>
+    </div>
+    <div>
+        <label for="victimName">Victim Name:</label>
+        <span>{{ data.case_id.victim_name }}</span>
+    </div>
+    <div>
+        <label for="victimGender">Victim Gender:</label>
+        <span>{{ data.case_id.victim_gender }}</span>
+    </div>
+    <div>
+        <label for="victimAge">Victim Age:</label>
+        <span>{{ data.case_id.victim_age }}</span>
+    </div>
+    <div>
+        <label for="victimDob">Victim Date of Birth:</label>
+        <span>{{ data.case_id.victim_dob }}</span>
+    </div>
+    <div>
+        <label for="mobileNo">Mobile No:</label>
+        <span>{{ data.case_id.mobile_no }}</span>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <span>{{ data.case_id.email }}</span>
+    </div>
+    <div>
+        <label for="victimAddress">Victim Address:</label>
+        <span>{{ data.case_id.victim_address }}</span>
+    </div>
+    <div>
+        <label for="incidentType">Incident Type:</label>
+        <span>{{ data.case_id.incident_type }}</span>
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <span>{{ data.case_id.description }}</span>
+    </div>
+    <div>
+        <label for="district">District:</label>
+        <span>{{ data.case_id.district }}</span>
+    </div>
+    <div>
+        <label for="incidentDate">Incident Date:</label>
+        <span>{{ data.case_id.incident_date }}</span>
+    </div>
+    <div>
+        <label for="caseProgress">Case Progress:</label>
+        <span>
+            {% if data.case_id.case_progress == 1 %}
+                Case Closed
+            {% elif data.case_id.case_progress == 0 %}
+                Registered
+            {% elif data.case_id.case_progress == 2 %}
+                Case Ongoing
+            {% endif %}
+        </span>
+    </div>
+    <div>
+        <label for="userId">User ID:</label>
+        <span>{{ data.case_id.userid_id }}</span>  <!-- Assuming userid is the foreign key -->
+    </div>
+    {% if data.casestatus == 1 %}
+
+ 
+    <a href="{% url 'Manager:SubmitCase' data.id %}" class="btn btn-primary">Approve Case File</a>
+    <a href="{% url 'Manager:CancelCase' data.id %}" class="btn btn-primary">Reject Case File</a>
+ 
+    {% endif %}
+
+
+
+    <input type="hidden" name="" id="bookid" value="{{ data.case_id }}">
+       <br><br><br>
+       <h2>Case Findings and Updation Note</h2>
+       <br><br><br>
+       <div id="workoutPlans">
+           
+           {% for i in  c %}
+           <div>  
+           <hr>
+           <label for="workoutName">Date :</label>
+           <span>{{ i.date }} </span>
+           <br>
+           <br>
+           <label for="workoutDescription">Case Updation :</label>
+           <span>{{ i.findings }} </span>
+           <br>
+           <br>
+           <label for="workoutStatus">Description :</label>{{ i.description }} 
+           <span></span>
+           <br>
+           <br>
+   <input type="text" id="idd" value="{{ i.id }}" hidden>
+           </div>
+           
+
+           {% endfor %}
+
+
+           <br><br><br>
+           <h2>Final Report</h2> <br>
+           <label for="case_title">Case Title:</label><br>
+           {{ data.title }}
+           <br><br><br><br>
+           <label for="case_description">Case Description:</label><br>
+        {{ data.description }}
+     
+
+{% endblock %}

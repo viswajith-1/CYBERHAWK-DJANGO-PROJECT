@@ -1,0 +1,60 @@
+{% extends 'Admin/home.html' %}
+
+{% block content %}
+<style>
+    /* Add your custom styles here */
+    .case-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .case-table th, .case-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    .case-table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .case-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .view-more-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+<center><br><br>
+    <center><h1>CASE DETAILS</h1></center>
+<br><br><br>
+<table class="case-table">
+    <tr>
+        <th>Case ID</th>
+        <th>Vicitm Name</th>
+        <th>Mobile Number</th>   
+        <th>Incident Type</th>
+        <th>Officer Name</th>
+        <th>View More</th>
+
+       
+      
+    </tr>
+    {% for case in cases %}
+    <tr>
+        <td>{{ case.case_id.case_id }}</td>
+        <td>{{ case.case_id.victim_name }}</td>
+        <td>{{ case.case_id.mobile_no }}</td>
+        <td>{{ case.case_id.incident_type }}</td>
+        <td>{{ case.office.name }}</td>
+        <td><a href="{% url 'Admin:CaseStatus2' case.id %}" class="view-more-link">View More</a></td>
+
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="15">No case details available.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

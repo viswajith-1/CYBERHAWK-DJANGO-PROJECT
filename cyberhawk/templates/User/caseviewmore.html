@@ -1,0 +1,84 @@
+{% extends 'User/home.html' %}
+
+{% block content %}
+<style>
+    /* Add your custom styles here */
+    .case-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .case-table th, .case-table td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    .case-table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+    .case-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .view-more-link {
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+
+<h1>All Case Details</h1>
+
+<table class="case-table">
+    <tr>
+        <th>Case ID</th>
+        <th>Victim Name</th>
+        <th>Gender</th>
+        <th>Age</th>
+        <th>Date of Birth</th>
+        <th>Mobile No</th>
+        <th>Address</th>
+        <th>Incident Type</th>
+        <th>Description</th>
+        <th>District</th>
+        <th>Incident Date</th>
+        <th>Case Progress</th>
+        <th>Action</th>
+    </tr>
+    {% for case in cases %}
+    <tr>
+        <td>{{ case.case_id }}</td>
+        <td>{{ case.victim_name }}</td>
+        <td>{{ case.victim_gender }}</td>
+        <td>{{ case.victim_age }}</td>
+        <td>{{ case.victim_dob }}</td>
+        <td>{{ case.mobile_no }}</td>
+        <td>{{ case.victim_address }}</td>
+        <td>{{ case.incident_type }}</td>
+        <td>{{ case.description }}</td>
+        <td>{{ case.district }}</td>
+        <td>{{ case.incident_date }}</td>
+        <td>
+            {% if case.case_progress == 1 %}
+                Case Closed
+            {% elif case.case_progress == 0 %}
+                Registered
+            {% elif case.case_progress == 2 %}
+                Case Ongoing
+            {% endif %}
+        </td>
+        <td>
+            {% if case.case_progress == 1 %}
+            <a href="{% url 'User:view_case' case.case_id %}" class="view-more-link">View More</a>
+            {% else %}
+            Case Not Closed
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="15">No case details available.</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
